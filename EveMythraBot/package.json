@@ -1,0 +1,35 @@
+{
+  "name": "EveMythraBot",
+  "version": "1.0.0",
+  "description": "EveMythraBot",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Microsoft Corp.",
+  "license": "MIT",
+  "keywords": [
+    "botbuilder",
+    "bots",
+    "chatbots",
+    "botbuilder-samples"
+  ],
+  "bugs": {
+    "url": "https://github.com/Microsoft/BotBuilder-Samples/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Microsoft/BotBuilder-Samples.git"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.15.0",
+    "botbuilder": "^3.8.4",
+    "dotenv-extended": "^1.0.4",
+    "express": "^4.13.4",
+    "google-geocode": "0.0.2",
+    "nbrite": "^0.2.0",
+    "request": "^2.79.0",
+    "restify": "^4.3.0"
+  }
+}

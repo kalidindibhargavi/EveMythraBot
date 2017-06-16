@@ -1,0 +1,338 @@
+{
+  "luis_schema_version": "2.1.0",
+  "versionId": "0.1",
+  "name": "Evemythra",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "EndTalk"
+    },
+    {
+      "name": "eventSearch"
+    },
+    {
+      "name": "greetings"
+    },
+    {
+      "name": "Help"
+    },
+    {
+      "name": "None"
+    },
+    {
+      "name": "SearchEventByDate"
+    },
+    {
+      "name": "SearchEventByName"
+    },
+    {
+      "name": "SearchEvents"
+    },
+    {
+      "name": "SearchEventsByCategory"
+    }
+  ],
+  "entities": [
+    {
+      "name": "AirportCode"
+    },
+    {
+      "name": "Category"
+    },
+    {
+      "name": "Date"
+    },
+    {
+      "name": "Events"
+    }
+  ],
+  "composites": [],
+  "closedLists": [],
+  "bing_entities": [],
+  "actions": [],
+  "model_features": [
+    {
+      "name": "Near",
+      "mode": true,
+      "words": "near,around,close,nearby",
+      "activated": true
+    },
+    {
+      "name": "Show",
+      "mode": true,
+      "words": "show,find,look,search",
+      "activated": true
+    }
+  ],
+  "regex_features": [
+    {
+      "name": "AirportCodeRegex",
+      "pattern": "[a-z]{3}",
+      "activated": true
+    }
+  ],
+  "utterances": [
+    {
+      "text": "help me",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "what are the available options?",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "i need help",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "can u please help me",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "can u suggest me what kind of question i should ask",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "thank you",
+      "intent": "EndTalk",
+      "entities": []
+    },
+    {
+      "text": "good afternoon",
+      "intent": "greetings",
+      "entities": []
+    },
+    {
+      "text": "good morning",
+      "intent": "greetings",
+      "entities": []
+    },
+    {
+      "text": "hii",
+      "intent": "greetings",
+      "entities": []
+    },
+    {
+      "text": "hello",
+      "intent": "greetings",
+      "entities": []
+    },
+    {
+      "text": "hey",
+      "intent": "greetings",
+      "entities": []
+    },
+    {
+      "text": "event near geography",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "AirportCode",
+          "startPos": 11,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "show events near airportcode airport",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "AirportCode",
+          "startPos": 17,
+          "endPos": 27
+        }
+      ]
+    },
+    {
+      "text": "find events near airportcode",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "AirportCode",
+          "startPos": 17,
+          "endPos": 27
+        }
+      ]
+    },
+    {
+      "text": "find events around airportcode airport",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "AirportCode",
+          "startPos": 19,
+          "endPos": 29
+        }
+      ]
+    },
+    {
+      "text": "find hotels around airportcode airport",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "AirportCode",
+          "startPos": 19,
+          "endPos": 29
+        }
+      ]
+    },
+    {
+      "text": "what are the events in hyderabad",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "AirportCode",
+          "startPos": 23,
+          "endPos": 31
+        }
+      ]
+    },
+    {
+      "text": "available events",
+      "intent": "eventSearch",
+      "entities": []
+    },
+    {
+      "text": "what are the nearby events",
+      "intent": "eventSearch",
+      "entities": []
+    },
+    {
+      "text": "give me the list of events",
+      "intent": "eventSearch",
+      "entities": []
+    },
+    {
+      "text": "events",
+      "intent": "eventSearch",
+      "entities": []
+    },
+    {
+      "text": "show all events",
+      "intent": "eventSearch",
+      "entities": []
+    },
+    {
+      "text": "what type of events happening on this date?",
+      "intent": "SearchEventByDate",
+      "entities": [
+        {
+          "entity": "Date",
+          "startPos": 38,
+          "endPos": 41
+        }
+      ]
+    },
+    {
+      "text": "in which place events are taking place ont this date ?",
+      "intent": "SearchEventByDate",
+      "entities": [
+        {
+          "entity": "Date",
+          "startPos": 48,
+          "endPos": 51
+        }
+      ]
+    },
+    {
+      "text": "what are the events on this date?",
+      "intent": "SearchEventByDate",
+      "entities": [
+        {
+          "entity": "Date",
+          "startPos": 28,
+          "endPos": 31
+        }
+      ]
+    },
+    {
+      "text": "bye",
+      "intent": "EndTalk",
+      "entities": []
+    },
+    {
+      "text": "get me info about event",
+      "intent": "SearchEventByName",
+      "entities": [
+        {
+          "entity": "Events",
+          "startPos": 18,
+          "endPos": 22
+        }
+      ]
+    },
+    {
+      "text": "where is event happening",
+      "intent": "SearchEventByName",
+      "entities": [
+        {
+          "entity": "Events",
+          "startPos": 9,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "what are the timings of event",
+      "intent": "SearchEventByName",
+      "entities": [
+        {
+          "entity": "Events",
+          "startPos": 24,
+          "endPos": 28
+        }
+      ]
+    },
+    {
+      "text": "get me information about events",
+      "intent": "SearchEventByName",
+      "entities": [
+        {
+          "entity": "Events",
+          "startPos": 25,
+          "endPos": 30
+        }
+      ]
+    },
+    {
+      "text": "what are sport events happening in hyderabad",
+      "intent": "SearchEventsByCategory",
+      "entities": [
+        {
+          "entity": "Category",
+          "startPos": 9,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "what are sport events happening near hyderabad",
+      "intent": "SearchEventsByCategory",
+      "entities": [
+        {
+          "entity": "Category",
+          "startPos": 9,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "what are the upcoming sport events in hyderabad",
+      "intent": "SearchEventsByCategory",
+      "entities": [
+        {
+          "entity": "Category",
+          "startPos": 22,
+          "endPos": 26
+        }
+      ]
+    }
+  ]
+}
