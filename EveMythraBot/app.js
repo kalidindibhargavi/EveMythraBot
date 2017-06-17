@@ -45,12 +45,12 @@ bot.dialog('SearchEvents',[
 	function confirmQuery(session,args,next) {
 		session.dialogData.entities=args.intent.entities;
 		if(args.intent.entities==undefined) { 
-			session.replaceDialog('help');
+			session.replaceDialog('Help');
 		} else {
-			var locationEntity=builder.EntityRecognizer.findEntity(args.intent.entities,'builtin.geography.country');
+			var locationEntity=builder.EntityRecognizer.findEntity(args.intent.entities,'Events.PlaceName');
 			console.log(JSON.stringify(args.intent.entities[0]));
 			if(args.intent.entities[0]==undefined) { 
-				session.replaceDialog('help');
+				session.replaceDialog('Help');
 			} else {
 				if(locationEntity!==null){
 					session.dialogData.byLocation=true;
@@ -59,7 +59,7 @@ bot.dialog('SearchEvents',[
 				if(session.dialogData.genre ||session.dialogData.date||session.dialogData.location||session.dialogData.language) { 
 					next();
 				} else { 
-					session.replaceDialog('help');
+					session.replaceDialog('Help');
 				}    
 			}
 		}
@@ -103,10 +103,10 @@ bot.dialog('SearchEvents',[
     matches: 'SearchEvents'
 
 });
-       
-		
-/*
-	
-        
 
-       */
+bot.dialog('Help', function (session,arg){
+    session.sendTyping();
+    session.endDialog("Try asking me questions like what are the events happening in Hyderabad");
+}).triggerAction({
+    matches: 'Help'
+});

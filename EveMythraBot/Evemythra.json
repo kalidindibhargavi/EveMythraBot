@@ -9,7 +9,11 @@
       "name": "EndTalk"
     },
     {
-      "name": "eventSearch"
+      "name": "Events.Book",
+      "inherits": {
+        "domain_name": "Events",
+        "model_name": "Book"
+      }
     },
     {
       "name": "greetings"
@@ -24,13 +28,7 @@
       "name": "SearchEventByDate"
     },
     {
-      "name": "SearchEventByName"
-    },
-    {
       "name": "SearchEvents"
-    },
-    {
-      "name": "SearchEventsByCategory"
     }
   ],
   "entities": [
@@ -45,11 +43,48 @@
     },
     {
       "name": "Events"
+    },
+    {
+      "name": "Events.Address",
+      "inherits": {
+        "domain_name": "Events",
+        "model_name": "Address"
+      }
+    },
+    {
+      "name": "Events.Name",
+      "inherits": {
+        "domain_name": "Events",
+        "model_name": "Name"
+      }
+    },
+    {
+      "name": "Events.PlaceName",
+      "inherits": {
+        "domain_name": "Events",
+        "model_name": "PlaceName"
+      }
+    },
+    {
+      "name": "Events.PlaceType",
+      "inherits": {
+        "domain_name": "Events",
+        "model_name": "PlaceType"
+      }
+    },
+    {
+      "name": "Events.Type",
+      "inherits": {
+        "domain_name": "Events",
+        "model_name": "Type"
+      }
     }
   ],
   "composites": [],
   "closedLists": [],
-  "bing_entities": [],
+  "bing_entities": [
+    "geography"
+  ],
   "actions": [],
   "model_features": [
     {
@@ -73,6 +108,391 @@
     }
   ],
   "utterances": [
+    {
+      "text": "I'd like to take dinner in a quiet restaurant in downtown",
+      "intent": "None",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 27,
+          "endPos": 27
+        },
+        {
+          "entity": "Events.Type",
+          "startPos": 9,
+          "endPos": 10
+        },
+        {
+          "entity": "Events.Address",
+          "startPos": 35,
+          "endPos": 44
+        },
+        {
+          "entity": "Events.Name",
+          "startPos": 24,
+          "endPos": 25
+        }
+      ]
+    },
+    {
+      "text": "Book for me lana del rey tickets in west palm",
+      "intent": "None",
+      "entities": [
+        {
+          "entity": "Events.Address",
+          "startPos": 36,
+          "endPos": 44
+        }
+      ]
+    },
+    {
+      "text": "buy 2 tickets for the louvre museum",
+      "intent": "Events.Book",
+      "entities": [
+        {
+          "entity": "Events.PlaceName",
+          "startPos": 22,
+          "endPos": 34
+        }
+      ]
+    },
+    {
+      "text": "find 2 tickets to the steven tyler show in seattle",
+      "intent": "Events.Book",
+      "entities": [
+        {
+          "entity": "Events.Address",
+          "startPos": 43,
+          "endPos": 49
+        }
+      ]
+    },
+    {
+      "text": "tickets for nine inch nails in copenhagen",
+      "intent": "Events.Book",
+      "entities": [
+        {
+          "entity": "Events.Address",
+          "startPos": 31,
+          "endPos": 40
+        },
+        {
+          "entity": "Events.Name",
+          "startPos": 12,
+          "endPos": 26
+        }
+      ]
+    },
+    {
+      "text": "find tickets for toto in huber heights ohio",
+      "intent": "Events.Book",
+      "entities": [
+        {
+          "entity": "Events.Address",
+          "startPos": 25,
+          "endPos": 42
+        }
+      ]
+    },
+    {
+      "text": "i want to see a concert in kitchener",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Address",
+          "startPos": 27,
+          "endPos": 35
+        }
+      ]
+    },
+    {
+      "text": "Book for me tickets to lollapalooza in chicago",
+      "intent": "None",
+      "entities": [
+        {
+          "entity": "Events.Address",
+          "startPos": 39,
+          "endPos": 45
+        }
+      ]
+    },
+    {
+      "text": "I'd like to go to a concert in new york city",
+      "intent": "None",
+      "entities": [
+        {
+          "entity": "Events.Address",
+          "startPos": 20,
+          "endPos": 33
+        }
+      ]
+    },
+    {
+      "text": "I'd like to see a concert in toronto",
+      "intent": "None",
+      "entities": [
+        {
+          "entity": "Events.Address",
+          "startPos": 18,
+          "endPos": 24
+        }
+      ]
+    },
+    {
+      "text": "lana del rey tickets in west palm",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Address",
+          "startPos": 24,
+          "endPos": 32
+        }
+      ]
+    },
+    {
+      "text": "Let's book two tickets for the international library",
+      "intent": "Events.Book",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 27,
+          "endPos": 29
+        },
+        {
+          "entity": "Events.Name",
+          "startPos": 23,
+          "endPos": 25
+        }
+      ]
+    },
+    {
+      "text": "I want to see a comedy theatre next weekend",
+      "intent": "None",
+      "entities": [
+        {
+          "entity": "Events.Type",
+          "startPos": 23,
+          "endPos": 29
+        },
+        {
+          "entity": "Events.Name",
+          "startPos": 14,
+          "endPos": 21
+        }
+      ]
+    },
+    {
+      "text": "buy concert tickets for bill cosby",
+      "intent": "Events.Book",
+      "entities": [
+        {
+          "entity": "Events.Type",
+          "startPos": 4,
+          "endPos": 10
+        },
+        {
+          "entity": "Events.Name",
+          "startPos": 24,
+          "endPos": 33
+        }
+      ]
+    },
+    {
+      "text": "tickets for wicked please",
+      "intent": "Events.Book",
+      "entities": [
+        {
+          "entity": "Events.Name",
+          "startPos": 12,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "usc vs notre dame tickets please",
+      "intent": "Events.Book",
+      "entities": [
+        {
+          "entity": "Events.Name",
+          "startPos": 0,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "can you find me tickets to the seahawks game",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Type",
+          "startPos": 40,
+          "endPos": 43
+        },
+        {
+          "entity": "Events.Name",
+          "startPos": 31,
+          "endPos": 38
+        }
+      ]
+    },
+    {
+      "text": "tickets for toronto raptors please",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Name",
+          "startPos": 12,
+          "endPos": 26
+        }
+      ]
+    },
+    {
+      "text": "i want to buy nick jonas tickets",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Name",
+          "startPos": 14,
+          "endPos": 23
+        }
+      ]
+    },
+    {
+      "text": "get game tickets",
+      "intent": "Events.Book",
+      "entities": [
+        {
+          "entity": "Events.Type",
+          "startPos": 4,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "book 5 tickets city game",
+      "intent": "Events.Book",
+      "entities": [
+        {
+          "entity": "Events.Type",
+          "startPos": 20,
+          "endPos": 23
+        }
+      ]
+    },
+    {
+      "text": "find harvard crimson next game tickets",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Type",
+          "startPos": 26,
+          "endPos": 29
+        },
+        {
+          "entity": "Events.Name",
+          "startPos": 5,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "i want to watch a metallica concert",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Type",
+          "startPos": 28,
+          "endPos": 34
+        },
+        {
+          "entity": "Events.Name",
+          "startPos": 18,
+          "endPos": 26
+        }
+      ]
+    },
+    {
+      "text": "purchase tickets for seahawks game saturday",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Type",
+          "startPos": 30,
+          "endPos": 33
+        },
+        {
+          "entity": "Events.Name",
+          "startPos": 21,
+          "endPos": 28
+        }
+      ]
+    },
+    {
+      "text": "I want a romantic restaurant for my newly married friends",
+      "intent": "Events.Book",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 18,
+          "endPos": 27
+        }
+      ]
+    },
+    {
+      "text": "Where I can find a quiet cafe for studying ?",
+      "intent": "Events.Book",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 25,
+          "endPos": 28
+        }
+      ]
+    },
+    {
+      "text": "I want to go to a cultural theatre tonight",
+      "intent": "Events.Book",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 18,
+          "endPos": 33
+        }
+      ]
+    },
+    {
+      "text": "Check for me the nearest romantic cafe",
+      "intent": "None",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 34,
+          "endPos": 37
+        }
+      ]
+    },
+    {
+      "text": "Can you find a cozier restaurant in my location ?",
+      "intent": "None",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 22,
+          "endPos": 31
+        }
+      ]
+    },
+    {
+      "text": "Help me in finding a romantic restaurant by the sea shore",
+      "intent": "None",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 30,
+          "endPos": 39
+        }
+      ]
+    },
     {
       "text": "help me",
       "intent": "Help",
@@ -133,7 +553,7 @@
       "intent": "SearchEvents",
       "entities": [
         {
-          "entity": "AirportCode",
+          "entity": "Events.PlaceName",
           "startPos": 11,
           "endPos": 19
         }
@@ -144,20 +564,19 @@
       "intent": "SearchEvents",
       "entities": [
         {
-          "entity": "AirportCode",
+          "entity": "Events.PlaceName",
           "startPos": 17,
           "endPos": 27
         }
       ]
     },
     {
-      "text": "find events near airportcode",
+      "text": "find events near chennai",
       "intent": "SearchEvents",
       "entities": [
         {
-          "entity": "AirportCode",
-          "startPos": 17,
-          "endPos": 27
+          "entity": "Events.PlaceName",
+          "startPos": 18
         }
       ]
     },
@@ -166,18 +585,7 @@
       "intent": "SearchEvents",
       "entities": [
         {
-          "entity": "AirportCode",
-          "startPos": 19,
-          "endPos": 29
-        }
-      ]
-    },
-    {
-      "text": "find hotels around airportcode airport",
-      "intent": "SearchEvents",
-      "entities": [
-        {
-          "entity": "AirportCode",
+          "entity": "Events.PlaceName",
           "startPos": 19,
           "endPos": 29
         }
@@ -188,36 +596,332 @@
       "intent": "SearchEvents",
       "entities": [
         {
-          "entity": "AirportCode",
+          "entity": "Events.PlaceName",
           "startPos": 23,
           "endPos": 31
         }
       ]
     },
     {
-      "text": "available events",
-      "intent": "eventSearch",
-      "entities": []
+      "text": "get events in hyderabad",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.PlaceName",
+          "startPos": 14,
+          "endPos": 22
+        }
+      ]
     },
     {
-      "text": "what are the nearby events",
-      "intent": "eventSearch",
-      "entities": []
+      "text": "give me list of events in delhi",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 26,
+          "endPos": 30
+        }
+      ]
     },
     {
-      "text": "give me the list of events",
-      "intent": "eventSearch",
-      "entities": []
+      "text": "get me events in chennai",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.PlaceName",
+          "startPos": 17,
+          "endPos": 23
+        }
+      ]
     },
     {
-      "text": "events",
-      "intent": "eventSearch",
-      "entities": []
+      "text": "help me in finding a romantic restaurant by the sea shore",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 30,
+          "endPos": 39
+        }
+      ]
     },
     {
-      "text": "show all events",
-      "intent": "eventSearch",
-      "entities": []
+      "text": "can you find a cozier restaurant in my location ?",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 22,
+          "endPos": 31
+        }
+      ]
+    },
+    {
+      "text": "check for me the nearest romantic cafe",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 34,
+          "endPos": 37
+        }
+      ]
+    },
+    {
+      "text": "i want to see a comedy theatre next weekend",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Type",
+          "startPos": 23,
+          "endPos": 29
+        },
+        {
+          "entity": "Events.Name",
+          "startPos": 14,
+          "endPos": 21
+        }
+      ]
+    },
+    {
+      "text": "where i can find a quiet cafe for studying ?",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 25,
+          "endPos": 28
+        }
+      ]
+    },
+    {
+      "text": "i want to go to a cultural theatre tonight",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 18,
+          "endPos": 33
+        }
+      ]
+    },
+    {
+      "text": "i'd like to take dinner in a quiet restaurant in downtown",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 27,
+          "endPos": 27
+        },
+        {
+          "entity": "Events.Type",
+          "startPos": 9,
+          "endPos": 10
+        },
+        {
+          "entity": "Events.Address",
+          "startPos": 35,
+          "endPos": 44
+        },
+        {
+          "entity": "Events.Name",
+          "startPos": 24,
+          "endPos": 25
+        }
+      ]
+    },
+    {
+      "text": "i want a romantic restaurant for my newly married friends",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 18,
+          "endPos": 27
+        }
+      ]
+    },
+    {
+      "text": "i'd like to go to a concert in new york city",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Address",
+          "startPos": 20,
+          "endPos": 33
+        }
+      ]
+    },
+    {
+      "text": "i'd like to see a concert in toronto",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Address",
+          "startPos": 18,
+          "endPos": 24
+        }
+      ]
+    },
+    {
+      "text": "get me information about events",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Name",
+          "startPos": 25,
+          "endPos": 30
+        }
+      ]
+    },
+    {
+      "text": "what are the timings of event",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Name",
+          "startPos": 24,
+          "endPos": 28
+        }
+      ]
+    },
+    {
+      "text": "where is event happening",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Name",
+          "startPos": 9,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "get me info about event",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Name",
+          "startPos": 18,
+          "endPos": 22
+        }
+      ]
+    },
+    {
+      "text": "what are the upcoming sport events in hyderabad",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 22,
+          "endPos": 26
+        }
+      ]
+    },
+    {
+      "text": "what are sport events happening near hyderabad",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 9,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "what are sport events happening in hyderabad",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.PlaceType",
+          "startPos": 9,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "information about colors in hyderabad",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Address",
+          "startPos": 28,
+          "endPos": 36
+        },
+        {
+          "entity": "Events.Name",
+          "startPos": 18,
+          "endPos": 23
+        }
+      ]
+    },
+    {
+      "text": "get me upcoming college events in chennai",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Type",
+          "startPos": 16,
+          "endPos": 22
+        },
+        {
+          "entity": "Events.PlaceName",
+          "startPos": 34,
+          "endPos": 40
+        }
+      ]
+    },
+    {
+      "text": "fetch me details of colors",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Name",
+          "startPos": 20,
+          "endPos": 25
+        }
+      ]
+    },
+    {
+      "text": "sports",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Type",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "list of workshops in delhi",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.Type",
+          "startPos": 8,
+          "endPos": 16
+        },
+        {
+          "entity": "Events.PlaceName",
+          "startPos": 21,
+          "endPos": 25
+        }
+      ]
+    },
+    {
+      "text": "what are the events happening in bangalore",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.PlaceName",
+          "startPos": 33,
+          "endPos": 41
+        }
+      ]
     },
     {
       "text": "what type of events happening on this date?",
@@ -258,79 +962,40 @@
       "entities": []
     },
     {
-      "text": "get me info about event",
-      "intent": "SearchEventByName",
+      "text": "book for me tickets to lollapalooza in chicago",
+      "intent": "Events.Book",
       "entities": [
         {
-          "entity": "Events",
-          "startPos": 18,
-          "endPos": 22
+          "entity": "Events.Address",
+          "startPos": 39,
+          "endPos": 45
         }
       ]
     },
     {
-      "text": "where is event happening",
-      "intent": "SearchEventByName",
+      "text": "book for me lana del rey tickets in west palm",
+      "intent": "Events.Book",
       "entities": [
         {
-          "entity": "Events",
-          "startPos": 9,
-          "endPos": 13
+          "entity": "Events.Address",
+          "startPos": 36,
+          "endPos": 44
         }
       ]
     },
     {
-      "text": "what are the timings of event",
-      "intent": "SearchEventByName",
+      "text": "let's book two tickets for the international library",
+      "intent": "Events.Book",
       "entities": [
         {
-          "entity": "Events",
-          "startPos": 24,
-          "endPos": 28
-        }
-      ]
-    },
-    {
-      "text": "get me information about events",
-      "intent": "SearchEventByName",
-      "entities": [
+          "entity": "Events.PlaceType",
+          "startPos": 27,
+          "endPos": 29
+        },
         {
-          "entity": "Events",
-          "startPos": 25,
-          "endPos": 30
-        }
-      ]
-    },
-    {
-      "text": "what are sport events happening in hyderabad",
-      "intent": "SearchEventsByCategory",
-      "entities": [
-        {
-          "entity": "Category",
-          "startPos": 9,
-          "endPos": 13
-        }
-      ]
-    },
-    {
-      "text": "what are sport events happening near hyderabad",
-      "intent": "SearchEventsByCategory",
-      "entities": [
-        {
-          "entity": "Category",
-          "startPos": 9,
-          "endPos": 13
-        }
-      ]
-    },
-    {
-      "text": "what are the upcoming sport events in hyderabad",
-      "intent": "SearchEventsByCategory",
-      "entities": [
-        {
-          "entity": "Category",
-          "startPos": 22,
-          "endPos": 26
+          "entity": "Events.Name",
+          "startPos": 23,
+          "endPos": 25
         }
       ]
     }

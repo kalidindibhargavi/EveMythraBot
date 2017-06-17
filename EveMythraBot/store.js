@@ -4,17 +4,17 @@ var request = require("request");
 var api='XSWQAVR2DCBJM2C4Y2SQ';
 
 module.exports = {
-	EventsList: function ( lCategory) {
+	EventList: function ( lCategory) {
         return new Promise(function (resolve) {
 			if(lCategory != null) {
 				var options = { 
 					method : 'GET',
 					url : 'https://www.eventbriteapi.com/v3/events/search/?location.',
 					qs : {
-						address : loc,
+						address : lCategory,
 						token : api
 					},
-					json = true,
+					json : true,
 					body : '{}'
 				};
 			}
@@ -22,19 +22,19 @@ module.exports = {
 				if (error) throw new Error(error);
 				console.log()
 				if(!error && body.results!=undefined) {
-					var mlist = [];
+					var elist = [];
 					for (var i = 0; i <body.results.length&& i< 10; i++) {
 						var s;
 						s= body.results[i].title;
-						mlist.push({
+						elist.push({
 							title: body.results[i].title,
 							subtitle:body.results[i].release_date,
 							text: body.results[i].original_language
 						});
-						if(mlist.length==0){
-							mlist=null;
+						if(elist.length==0){
+							elist=null;
 						}
-						setTimeout(function () { resolve(mlist); }, 1000);
+						setTimeout(function () { resolve(elist); }, 1000);
 					}
 				}
 			});
