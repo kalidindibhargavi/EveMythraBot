@@ -1,26 +1,28 @@
-var Promise = require('bluebird');
+var Bluebird = require('bluebird');
 var http = require("https");
 var request = require("request");
 var api='XSWQAVR2DCBJM2C4Y2SQ';
 
 module.exports = {
 	EventList: function ( lCategory) {
-        return new Promise(function (resolve) {
+		console.log('hi')
+		return new Bluebird(function (resolve) {
 			if(lCategory != null) {
 				var options = { 
 					method : 'GET',
-					url : 'https://www.eventbriteapi.com/v3/events/search/?location.',
-					qs : {
-						address : lCategory,
-						token : api
-					},
+					url : 'https://www.eventbriteapi.com/v3/events/search/?location.address= '+lCategory+'&token='+api,
 					json : true,
-					body : '{}'
-				};
-			}
+			};
+				
+		}
+			
 			request(options, function (error, response, body) {
+				console.log(error);
+				console.log(response);
+				console.log(body);
+				
 				if (error) throw new Error(error);
-				console.log()
+					console.log()
 				if(!error && body.results!=undefined) {
 					var elist = [];
 					for (var i = 0; i <body.results.length&& i< 10; i++) {

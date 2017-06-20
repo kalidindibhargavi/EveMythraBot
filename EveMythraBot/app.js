@@ -26,6 +26,7 @@ var model = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/2d2b2b09-
 var recognizer = new builder.LuisRecognizer(model);
 
 
+
 bot.recognizer(recognizer);
 bot.dialog('greetings', function (session,arg){
     session.sendTyping();
