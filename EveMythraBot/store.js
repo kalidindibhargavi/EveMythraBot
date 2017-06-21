@@ -32,10 +32,9 @@ module.exports = {
 						s= body.events[i].name.text;
 						elist.push({
 							title: body.events[i].name.text,
-							text: body.events[i].description.text,
+							//text: body.events[i].description.text,
 							image:body.events[i].logo.url,
-							url: body.events[i].url
-							
+							url: body.events[i].url							
 						});
 						if(elist.length==0){
 							elist=null;

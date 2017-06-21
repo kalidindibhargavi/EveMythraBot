@@ -571,6 +571,17 @@
       ]
     },
     {
+      "text": "events happening in delhi",
+      "intent": "SearchEvents",
+      "entities": [
+        {
+          "entity": "Events.PlaceName",
+          "startPos": 20,
+          "endPos": 25
+        }
+      ]
+    },
+    {
       "text": "find events near chennai",
       "intent": "SearchEvents",
       "entities": [

@@ -90,9 +90,9 @@ bot.dialog('SearchEvents',[
                     var message = new builder.Message()
 
                     .attachmentLayout(builder.AttachmentLayout.carousel)
-                    .attachments(elist.map(e => new builder.ThumbnailCard(session)
+                    .attachments(elist.map(e => new builder.HeroCard(session)
                     .title(e.title)
-                    .text(e.text)
+                    //.text(e.text)
                     .images([
                         builder.CardImage.create(session, e.image)
                     ])
