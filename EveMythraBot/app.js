@@ -88,8 +88,17 @@ bot.dialog('SearchEvents',[
 
                      setTimeout(function () {
                     var message = new builder.Message()
+
                     .attachmentLayout(builder.AttachmentLayout.carousel)
-                    .attachments(elist.map(eventsListAsAttachment));
+                    .attachments(elist.map(e => new builder.ThumbnailCard(session)
+                    .title(e.title)
+                    .text(e.text)
+                    .images([
+                        builder.CardImage.create(session, e.image)
+                    ])
+                    .buttons([
+                        builder.CardAction.openUrl(session,e.url,'Register')
+                    ])));
                 session.send(message);
                  }, 3000);
                  

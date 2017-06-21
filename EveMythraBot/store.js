@@ -5,7 +5,7 @@ var api='XSWQAVR2DCBJM2C4Y2SQ';
 
 module.exports = {
 	EventList: function ( lCategory) {
-		console.log('hi')
+		
 		return new Bluebird(function (resolve) {
 			if(lCategory != null) {
 				var options = { 
@@ -17,25 +17,30 @@ module.exports = {
 		}
 			
 			request(options, function (error, response, body) {
-				console.log(error);
-				console.log(response);
-				console.log(body);
+				//console.log(error);
+				//console.log(response);
+				//console.log(body);
 				
 				if (error) throw new Error(error);
 					console.log()
-				if(!error && body.results!=undefined) {
+				if(!error && body.events!=undefined) {
 					var elist = [];
-					for (var i = 0; i <body.results.length&& i< 10; i++) {
+					//console.log('hi')
+					for (var i = 0; i <body.events.length&& i< 10; i++) {
 						var s;
-						s= body.results[i].title;
+						//console.log('hi1')
+						s= body.events[i].name.text;
 						elist.push({
-							title: body.results[i].title,
-							subtitle:body.results[i].release_date,
-							text: body.results[i].original_language
+							title: body.events[i].name.text,
+							text: body.events[i].description.text,
+							image:body.events[i].logo.url,
+							url: body.events[i].url
+							
 						});
 						if(elist.length==0){
 							elist=null;
 						}
+						//console.log(elist)
 						setTimeout(function () { resolve(elist); }, 1000);
 					}
 				}
