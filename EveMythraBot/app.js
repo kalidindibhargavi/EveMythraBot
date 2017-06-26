@@ -9,8 +9,8 @@ server.listen(process.env.port || process.env.PORT || 8080, function () {
 
 // Create chat connector for communicating with the Bot Framework Service
 var connector = new builder.ChatConnector({
-    appId: process.env.MICROSOFT_APP_ID,
-    appPassword: process.env.MICROSOFT_APP_PASSWORD
+    appId: "9e8ee05c-7044-4571-bea9-3cbe4cf9420e",//process.env.MICROSOFT_APP_ID,
+    appPassword: "K4AM6yznCRh4ZXgegjsg2JR"//process.env.MICROSOFT_APP_PASSWORD
 });
 
 // Listen for messages from users 
@@ -18,7 +18,7 @@ server.post('/api/messages', connector.listen());
 
 // Receive messages from the user and respond by echoing each message back (prefixed with 'You said:')
 var bot = new builder.UniversalBot(connector, function (session) {
-    session.send("Sorry, I didnt understand.");
+    session.send("Sorry, I didnt understand. Type 'Help' to interact more with me");
 });
 
 var model = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/2d2b2b09-de56-4787-97f1-987d108f4c76?subscription-key=8fc75abf1efb45cfbf265eae59031d1e&timezoneOffset=0&verbose=true';
@@ -30,14 +30,20 @@ var recognizer = new builder.LuisRecognizer(model);
 bot.recognizer(recognizer);
 bot.dialog('greetings', function (session,arg){
     session.sendTyping();
-    session.send("Hey there!!!!");
-    session.send(" Iam EveMythraBot");
-     session.send({
+    session.send("Greetings Majesty!!!!");
+    session.send({
    type: "message",
-  text: "<ss type =\"wink\">;)</ss>"
+  text: "<ss type =\"pray\">(pray)</ss>"
 
     });
-    session.endDialog(" Ask me Events an info of those events near you. I'll reccommend some for you\n\n  Type 'Help' if your stuck");
+    session.send("EveMythraBot at your Service");
+     session.send({
+   type: "message",
+  text: "<ss type =\"bow\">(bow)</ss>"
+
+    });
+    //session.send("Majesty can you please tell me at which place are you looking for events");
+    session.endDialog("Want to know about me type 'Help'");
 }).triggerAction({
     matches: 'greetings'
 });
@@ -48,44 +54,66 @@ bot.dialog('SearchEvents',[
 		if(args.intent.entities==undefined) { 
 			session.replaceDialog('Help');
 		} else {
+            var typeEntity=builder.EntityRecognizer.findEntity(args.intent.entities,'Events.Type');
+            //var nameEntity=builder.EntityRecognizer.findEntity(args.intent.entities,'Events.Name');
 			var locationEntity=builder.EntityRecognizer.findEntity(args.intent.entities,'Events.PlaceName');
-			console.log(JSON.stringify(args.intent.entities[0]));
-			if(args.intent.entities[0]==undefined) { 
+            var dateKeywordEntity=builder.EntityRecognizer.findEntity(args.intent.entities,'Events.DateKeyword');
+			//console.log(dateKeywordEntity.entity);
+            //console.log(JSON.stringify(args.intent.entities[0]));
+            //console.log(JSON.stringify(args.intent.entities[1]));
+			
+            if(args.intent.entities[0] == undefined) { 
 				session.replaceDialog('Help');
 			} else {
-				if(locationEntity!==null){
-					session.dialogData.byLocation=true;
-					session.dialogData.location=locationEntity.entity;
-				}
-				if(session.dialogData.genre ||session.dialogData.date||session.dialogData.location||session.dialogData.language) { 
-					next();
+                if(locationEntity !== null && typeEntity !== null && dateKeywordEntity !== null ){
+					session.dialogData.byDateKeyword = true;
+					session.dialogData.location = locationEntity.entity;
+                    session.dialogData.type = typeEntity.entity;
+                    session.dialogData.dateKeyword = dateKeywordEntity.entity;
+                    //console.log(session.dialogData.type);
+                    next();
+                } else if(locationEntity !== null && typeEntity !== null){
+					session.dialogData.byType = true;
+					session.dialogData.location = locationEntity.entity;
+                    session.dialogData.type = typeEntity.entity;
+                    //console.log(session.dialogData.type);
+                    next();
+				} else if(locationEntity !== null) {
+                    session.dialogData.byLocation = true;
+					session.dialogData.location = locationEntity.entity;
+                    next();
 				} else { 
 					session.replaceDialog('Help');
 				}    
 			}
 		}
 	},
-	
 	function getEventList(session,results,next){
-		var loc=null;
-		if(session.dialogData.byLocation) {
-            loc=session.dialogData.location;
+		var loc=session.dialogData.location;
+        if(session.dialogData.byType) {
+            var type = session.dialogData.type;
+        } else if(session.dialogData.byDateKeyword) {
+            var dateKeyword = session.dialogData.dateKeyword;
         }
-		if(!(loc!=null)){ 
-			session.endDialog('Request cancelled');
-       }else {
-            Store.EventList(loc)
+        
+		if(loc == null) { 
+			session.endDialog('Please be more specific by mentioning the location like "Events at hyderbad" or "Upcoming events at delhi"');
+       } else {
+           //console.log(type+'in getEventsList');
+           //console.log(loc);
+            Store.EventList(loc,type,dateKeyword)            
             .then(function (elist) {
                 //console.log("mlist"+JSON.stringify( mlist));
-            
+            //console.log("hi after evntlist function call");
                 //  console.log("type"+mlist.type);
+                
                 if(elist==null){
-                    session.endDialog("Could not find Events in this location.\n Try with other location ");
+                    session.endDialog("Could not find Events with your preference.\n Try some other preferences");
                 }
                 else
                 {
                       session.sendTyping();
-
+                      session.send("Here are some of the suggestions");
                      setTimeout(function () {
                     var message = new builder.Message()
 
@@ -101,6 +129,7 @@ bot.dialog('SearchEvents',[
                     ])));
                 session.send(message);
                  }, 3000);
+                 session.send("For registering to any of the events click on the register button");
                  
             
                 next();
@@ -116,7 +145,13 @@ bot.dialog('SearchEvents',[
 
 bot.dialog('Help', function (session,arg){
     session.sendTyping();
-    session.endDialog("Try asking me questions like what are the events happening in Hyderabad");
+    session.send("Your majesty, I can help you find events.Try asking me questions like");
+    session.send("1. what are the events happening in (location).");
+    session.send("2. free events in (location).");
+    session.send("3. events happening today in (location)");
+    session.send("4. paid events happening today in (location)");
+    //session.send("")
+    session.endDialog("Locations can be Hyderabad, Chennai, Bangalore, Hitecity");
 }).triggerAction({
     matches: 'Help'
 });

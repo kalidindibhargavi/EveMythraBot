@@ -4,17 +4,34 @@ var request = require("request");
 var api='XSWQAVR2DCBJM2C4Y2SQ';
 
 module.exports = {
-	EventList: function ( lCategory) {
+	EventList: function ( lCategory,tCategory,dkCategory) {
 		
 		return new Bluebird(function (resolve) {
-			if(lCategory != null) {
-				var options = { 
+			var url;
+			console.log("hi in store.js")
+			if(lCategory != null && dkCategory != null && tCategory != null ) {
+				if(dkCategory == 'upcoming'){url = 'https://www.eventbriteapi.com/v3/events/search/?location.address=hyderabad&start_date.keyword=this_week&token=XSWQAVR2DCBJM2C4Y2SQ';}
+				 
+				
+				if(tCategory == 'best'||tCategory == 'worst'){
+					url = 'https://www.eventbriteapi.com/v3/events/search/?sort_by='+tCategory+'&location.address='+lCategory+'&start_date.keyword='+dkCategory+'&token='+api;
+				} else if(tCategory == 'free'||tCategory == 'paid'){
+					url = 'https://www.eventbriteapi.com/v3/events/search/?location.address='+lCategory+'&price='+tCategory+'&start_date.keyword='+dkCategory+'&token='+api;
+				}
+			} else if(lCategory != null && tCategory != null) {
+				if(tCategory == 'best'||tCategory == 'worst'){
+					url = 'https://www.eventbriteapi.com/v3/events/search/?sort_by='+tCategory+'&location.address='+lCategory+'&token='+api;
+				} else if(tCategory == 'free'||tCategory == 'paid'){
+					url = 'https://www.eventbriteapi.com/v3/events/search/?location.address='+lCategory+'&price='+tCategory+'&token='+api;
+				} 
+			} else if(lCategory != null) {
+					url = 'https://www.eventbriteapi.com/v3/events/search/?location.address= '+lCategory+'&token='+api;
+			}
+			var options = { 
 					method : 'GET',
-					url : 'https://www.eventbriteapi.com/v3/events/search/?location.address= '+lCategory+'&token='+api,
+					url : url,
 					json : true,
 			};
-				
-		}
 			
 			request(options, function (error, response, body) {
 				//console.log(error);
@@ -27,15 +44,17 @@ module.exports = {
 					var elist = [];
 					//console.log('hi')
 					for (var i = 0; i <body.events.length&& i< 10; i++) {
-						var s;
+						//var s;
 						//console.log('hi1')
-						s= body.events[i].name.text;
-						elist.push({
-							title: body.events[i].name.text,
+						//s= body.events[i].name.text;
+						if(!(body.events[i].url == null || body.events[i].logo == null || body.events[i].logo.url == null ) ) {
+							elist.push({
+								title: body.events[i].name.text,
 							//text: body.events[i].description.text,
-							image:body.events[i].logo.url,
-							url: body.events[i].url							
-						});
+								image:body.events[i].logo.url,
+								url: body.events[i].url							
+							});
+						}
 						if(elist.length==0){
 							elist=null;
 						}
