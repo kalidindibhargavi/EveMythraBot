@@ -16,7 +16,7 @@ var connector = new builder.ChatConnector({
 // Listen for messages from users 
 server.post('/api/messages', connector.listen());
 
-// Receive messages from the user and respond by echoing each message back (prefixed with 'You said:')
+//default message when exceptions occur
 var bot = new builder.UniversalBot(connector, function (session) {
     session.send("Sorry, I didnt understand. Type 'Help' to interact more with me");
 });
@@ -24,8 +24,6 @@ var bot = new builder.UniversalBot(connector, function (session) {
 var model = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/2d2b2b09-de56-4787-97f1-987d108f4c76?subscription-key=8fc75abf1efb45cfbf265eae59031d1e&timezoneOffset=0&verbose=true';
 
 var recognizer = new builder.LuisRecognizer(model);
-
-
 
 bot.recognizer(recognizer);
 bot.dialog('greetings', function (session,arg){
@@ -56,9 +54,9 @@ bot.dialog('SearchEvents',[
 		} else {
             var typeEntity=builder.EntityRecognizer.findEntity(args.intent.entities,'Events.Type');
             //var nameEntity=builder.EntityRecognizer.findEntity(args.intent.entities,'Events.Name');
-			var locationEntity=builder.EntityRecognizer.findEntity(args.intent.entities,'Events.PlaceName');
+	    var locationEntity=builder.EntityRecognizer.findEntity(args.intent.entities,'Events.PlaceName');
             var dateKeywordEntity=builder.EntityRecognizer.findEntity(args.intent.entities,'Events.DateKeyword');
-			//console.log(dateKeywordEntity.entity);
+	    //console.log(dateKeywordEntity.entity);
             //console.log(JSON.stringify(args.intent.entities[0]));
             //console.log(JSON.stringify(args.intent.entities[1]));
 			
