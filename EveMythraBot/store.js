@@ -1,7 +1,7 @@
 var Bluebird = require('bluebird');
 var http = require("https");
 var request = require("request");
-var api='XSWQAVR2DCBJM2C4Y2SQ';
+var api='YV2YFP6AOS3FJLGOI55A';
 
 module.exports = {
 	EventList: function ( lCategory,tCategory,dkCategory) {
@@ -10,7 +10,7 @@ module.exports = {
 			var url;
 			console.log("hi in store.js")
 			if(lCategory != null && dkCategory != null && tCategory != null ) {
-				if(dkCategory == 'upcoming'){url = 'https://www.eventbriteapi.com/v3/events/search/?location.address=hyderabad&start_date.keyword=this_week&token=XSWQAVR2DCBJM2C4Y2SQ';}
+				if(dkCategory == 'upcoming'){url = 'https://www.eventbriteapi.com/v3/events/search/?location.address=hyderabad&start_date.keyword=this_week&token='+api;}
 				 
 				
 				if(tCategory == 'best'||tCategory == 'worst'){
